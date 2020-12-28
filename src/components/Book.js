@@ -6,14 +6,17 @@ import request from 'superagent';
 const Books = (props) => {
     const[books,setbooks] = useState([]);
     const[searchterm,setsearchterm] = useState('');
-    
+    const[totalitems,settotalitems] = useState();
     const searchbooks= (e) =>{
         e.preventDefault();
         request.get("https://www.googleapis.com/books/v1/volumes").query({
-            q:searchterm
+            q:searchterm,
+            startIndex:0,
+            maxResults:40
         }).then((data)=>{
-            console.log(data);
+            console.log(data.body.totalItems);
             setbooks([...data.body.items]);
+            settotalitems(data.body.totalItems);
         })
     }
 
