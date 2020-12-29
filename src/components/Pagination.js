@@ -18,7 +18,13 @@ const Pagination = (props) => {
         key={i}
         onClick={(event) => {
          // props.startindex(39);
-          props.pageresult(i*40);
+          if(i!=1){
+            props.pageresult((i-1)*40);
+          }
+          else{
+            props.pageresult(0);
+          }
+         
         }}
       >
         {i}

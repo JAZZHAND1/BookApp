@@ -19,6 +19,7 @@ const Books = (props) => {
             startIndex:startindex,
             maxResults:endindex,
         }).then((data)=>{
+            data =filtereddata(data);
             setbooks([...data.body.items]);
             settotalitems(data.body.totalItems);
             console.log(endindex);
@@ -34,9 +35,10 @@ const Books = (props) => {
             startIndex:startindex,
             maxResults:endindex,
         }).then((data)=>{
+            data = filtereddata(data)
             setbooks([...data.body.items]);
             settotalitems(data.body.totalItems);
-            console.log(startindex);
+           // console.log(startindex);
             let result = Math.ceil(data.body.totalItems/endindex);
             settotalpages(result);
             
@@ -58,11 +60,13 @@ const Books = (props) => {
        data.body.items.map((book) =>{
          if(book.volumeInfo.hasOwnProperty('publishedDate')==false){
             book.volumeInfo['publishedDate'] ='0000';
+            console.log("date");
          }
          else if(book.volumeInfo.hasOwnProperty('imageLinks')===false){
             book.volumeInfo['imageLinks'] = {thumbnail:'https://picsum.photos/seed/picsum/200/300'}
+            console.log("image");
          }
-         
+         console.log("40 times");
        })
        return data;
     }
