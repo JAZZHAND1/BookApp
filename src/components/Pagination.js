@@ -2,6 +2,7 @@ import React from "react";
 
 const Pagination = (props) => {
   const page_links = [];
+  console.log(props);
   for (let i = 1; i <= props.totalPages; i++) {
     let isActive;
     if (props.currentPage == i) {
@@ -15,14 +16,16 @@ const Pagination = (props) => {
       <button
         className={classes}
         key={i}
-        onClick={() => {
-          props.nextPage(i);
+        onClick={(event) => {
+         // props.startindex(39);
+          props.pageresult(39);
         }}
       >
         {i}
       </button>
     );
   }
+
   return (
     <div className="container">
       <div className="row">{page_links}</div>
