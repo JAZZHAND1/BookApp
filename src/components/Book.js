@@ -54,6 +54,19 @@ const Books = (props) => {
     {console.log(totalitems)}
     {console.log(totalpages)}
    
+    const filtereddata =(data)=>{
+       data.body.items.map((book) =>{
+         if(book.volumeInfo.hasOwnProperty('publishedDate')==false){
+            book.volumeInfo['publishedDate'] ='0000';
+         }
+         else if(book.volumeInfo.hasOwnProperty('imageLinks')===false){
+            book.volumeInfo['imageLinks'] = {thumbnail:'https://picsum.photos/seed/picsum/200/300'}
+         }
+         
+       })
+       return data;
+    }
+
     return (
     <div >
         <Searchbox handlesearchterm={handlesearchterm}
