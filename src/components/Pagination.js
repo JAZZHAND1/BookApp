@@ -11,6 +11,9 @@ const Pagination = (props) => {
       isActive = "";
     }
 
+
+
+
     let classes = "wave-effect " + isActive;
     page_links.push(
       <button
@@ -34,9 +37,13 @@ const Pagination = (props) => {
   }
 
   return (
-    <div className="container">
-      <div className="row">{page_links}</div>
-    </div>
+        <nav>
+          <ul className="pagination" >
+           {props.init ? <button>Prev</button>:''} 
+           <li className="page-item">{page_links} </li>
+           {props.init ? <button>Next</button>:''} 
+          </ul>
+        </nav>
   );
 };
 

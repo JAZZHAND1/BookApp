@@ -14,7 +14,7 @@ const Books = (props) => {
     const[sortmethod,setsortmethod]=useState('');
     const[bookdetailclicked,setbookdetailclicked] = useState(false);
     const[currentbook,setcurrentbook] =useState();
-   
+    const[init,setinit] = useState(false);
     {console.log(startindex)}
     const searchbooks= (e) =>{
         e.preventDefault();
@@ -29,6 +29,7 @@ const Books = (props) => {
             console.log(endindex);
             let result = Math.ceil(data.body.totalItems/endindex);
             settotalpages(result);
+            setinit(true);
             
         })
     }
@@ -129,7 +130,8 @@ const Books = (props) => {
        {bookdetailclicked ? '':<Booklist books={sortedbooks} currentbook={handlecurrentbook} setfalse={setfalse}/> }
        {bookdetailclicked ? '':<Pagination totalPages={totalpages}
                                startindex={setstartindex}
-                             pageresult={getpageresult}/>}  
+                             pageresult={getpageresult}
+                             init={init}/>}  
        
       {bookdetailclicked? <Bookdetails book={currentbook}></Bookdetails>:''}
         
