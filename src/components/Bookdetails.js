@@ -1,19 +1,22 @@
 import React ,{Component} from 'react';
 import Bookcard from './Bookcard';
-
+import Individualbookcard from './individualbookcard';
 const Bookdetails =(props)=>{
+    console.log(props);
     return(
-      <div className="list">
-        <Bookcard
-        key = {i}
-        image={book.volumeInfo.imageLinks.thumbnail}
-        title={book.volumeInfo.title}
-        author={book.volumeInfo.authors}
-        publishdate={book.volumeInfo.publishedDate}
+       <Individualbookcard
+            image={props.book.image}
+            title={props.book.title}
+            author={props.book.author}
+            publishdate={props.book.publishdate}
+            publisher ={props.book.publisher}
+            description={props.book.description}  
+            bookfunc ={props.book.bookfunc}
+            setfalse={props.book.setfalse}
         />
-       </div>
-        
     )
 }
+
+export default Bookdetails;
 
 

@@ -3,7 +3,7 @@ import Bookcard from './Bookcard';
 const Booklist =(props)=>{
     return(
      
-        <div className="list">
+        <div className="list" >
         {
             props.books.map((book,i) =>{
                 
@@ -13,10 +13,13 @@ const Booklist =(props)=>{
                      title={book.volumeInfo.title}
                      author={book.volumeInfo.authors}
                      publishdate={book.volumeInfo.publishedDate}
-
+                     bookfunc ={props.currentbook}
+                     publisher ={book.volumeInfo.publisher}
+                     description={book.volumeInfo.description}
+                     setfalse={props.setfalse}
                 />
               })
-        
+                  
         }
         </div>
         

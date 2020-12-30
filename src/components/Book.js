@@ -3,7 +3,7 @@ import Searchbox from './SearchBox';
 import Booklist from './Booklist';
 import request from 'superagent';
 import Pagination from './Pagination';
-
+import Bookdetails from './Bookdetails';
 const Books = (props) => {
     const[books,setbooks] = useState([]);
     const[searchterm,setsearchterm] = useState('');
@@ -12,6 +12,8 @@ const Books = (props) => {
     const[endindex,setendindex] =useState(40);
     const[totalpages,settotalpages]=useState();
     const[sortmethod,setsortmethod]=useState('');
+    const[bookdetailclicked,setbookdetailclicked] = useState(false);
+    const[currentbook,setcurrentbook] =useState();
    
     {console.log(startindex)}
     const searchbooks= (e) =>{
@@ -97,15 +99,39 @@ const Books = (props) => {
         return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
        }
     })
+
+    const handlecurrentbook =(data)=>{
+        if(bookdetailclicked==false){
+            setbookdetailclicked(true);
+            console.log(data);
+            setcurrentbook(data);
+        }
+        else if(bookdetailclicked==true){
+            console.log("Here");
+            setbookdetailclicked(false);
+            console.log(data);
+           // setcurrentbook(data);
+        }
+    }
+    const setfalse =() =>{
+        setbookdetailclicked(false);
+    }
+
+
+    {console.log(bookdetailclicked)}
+    {console.log(currentbook)}
+    {console.log(books[0])}
     
     return (
      <div>
         <Searchbox handlesearchterm={handlesearchterm}
         searchbooks={searchbooks} sort={sort}/> 
-        <Booklist books={sortedbooks} />
-         <Pagination totalPages={totalpages}
-                     startindex={setstartindex}
-                     pageresult={getpageresult}/>
+       {bookdetailclicked ? '':<Booklist books={sortedbooks} currentbook={handlecurrentbook} setfalse={setfalse}/> }
+       {bookdetailclicked ? '':<Pagination totalPages={totalpages}
+                               startindex={setstartindex}
+                             pageresult={getpageresult}/>}  
+       
+      {bookdetailclicked? <Bookdetails book={currentbook}></Bookdetails>:''}
         
     </div>
     

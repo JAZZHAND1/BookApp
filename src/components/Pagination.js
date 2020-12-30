@@ -29,6 +29,7 @@ const Pagination = (props) => {
       >
         {i}
       </button>
+
     );
   }
 
