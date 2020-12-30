@@ -42,7 +42,7 @@ const Pagination = (props) => {
         <nav>
           <ul className="pagination" >
            {props.init ? <button onClick={function(){
-             props.pageresult((currentpage-1)*40)
+             props.pageresult((currentpage-2)*40)
              setcurrentpage(currentpage-1)
            }}>Prev</button>:''} 
            <li className="page-item">{page_links} </li>
