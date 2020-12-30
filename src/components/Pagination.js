@@ -1,7 +1,8 @@
-import React from "react";
+import {React,useState} from "react";
 
 const Pagination = (props) => {
   const page_links = [];
+  const [currentpage,setcurrentpage] =useState(1);
   console.log(props);
   for (let i = 1; i <= props.totalPages; i++) {
     let isActive;
@@ -23,6 +24,7 @@ const Pagination = (props) => {
          // props.startindex(39);
           if(i!=1){
             props.pageresult((i-1)*40);
+            setcurrentpage(i);
           }
           else{
             props.pageresult(0);
@@ -39,9 +41,15 @@ const Pagination = (props) => {
   return (
         <nav>
           <ul className="pagination" >
-           {props.init ? <button>Prev</button>:''} 
+           {props.init ? <button onClick={function(){
+             props.pageresult((currentpage-1)*40)
+             setcurrentpage(currentpage-1)
+           }}>Prev</button>:''} 
            <li className="page-item">{page_links} </li>
-           {props.init ? <button>Next</button>:''} 
+           {props.init ? <button onClick={function(){
+             props.pageresult((currentpage)*40)
+             setcurrentpage(currentpage+1)
+           }}>Next</button>:''} 
           </ul>
         </nav>
   );
