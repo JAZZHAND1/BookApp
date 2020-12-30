@@ -2,6 +2,7 @@ import React from 'react';
 import Bookcard from './Bookcard';
 const Booklist =(props)=>{
     return(
+     
         <div className="list">
         {
             props.books.map((book,i) =>{
@@ -15,9 +16,10 @@ const Booklist =(props)=>{
 
                 />
               })
-
+        
         }
         </div>
+        
     )
 }
 

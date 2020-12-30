@@ -11,6 +11,8 @@ const Books = (props) => {
     const[startindex,setstartindex] =useState(0);
     const[endindex,setendindex] =useState(40);
     const[totalpages,settotalpages]=useState();
+    const[sortmethod,setsortmethod]=useState('');
+   
     {console.log(startindex)}
     const searchbooks= (e) =>{
         e.preventDefault();
@@ -71,16 +73,43 @@ const Books = (props) => {
        return data;
     }
 
+    const sort =(e)=>{
+        console.log(e.target.value);
+        setsortmethod(e.target.value);
+    }
+    
+    const sortedbooks= books.sort((a,b)=>{
+       if(sortmethod==='Newest'){
+           return parseInt(b.volumeInfo.publishedDate.substring(0,4)) - parseInt(a.volumeInfo.publishedDate.substring(0,4));
+
+       }  
+       else if(sortmethod==='Oldest'){
+        return parseInt(a.volumeInfo.publishedDate.substring(0,4)) - parseInt(b.volumeInfo.publishedDate.substring(0,4));
+       }  
+       else if(sortmethod==='A-Z'){
+         var textA = a.volumeInfo.title.toUpperCase();
+         var textB = b.volumeInfo.title.toUpperCase();
+         return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+       }
+       else{
+        var textA = a.volumeInfo.title.toUpperCase();
+        var textB = b.volumeInfo.title.toUpperCase();
+        return (textA < textB) ? 1 : (textA > textB) ? -1 : 0;
+       }
+    })
+    
     return (
-    <div >
+     <div>
         <Searchbox handlesearchterm={handlesearchterm}
-        searchbooks={searchbooks}/> 
-        <Booklist books={books} />
+        searchbooks={searchbooks} sort={sort}/> 
+        <Booklist books={sortedbooks} />
          <Pagination totalPages={totalpages}
                      startindex={setstartindex}
                      pageresult={getpageresult}/>
+        
     </div>
-  );
+    
+);
 };
 
 export default Books;
