@@ -3,7 +3,7 @@ import {React,useState} from "react";
 const Pagination = (props) => {
   const page_links = [];
   const [currentpage,setcurrentpage] =useState(1);
-  console.log(props);
+  console.log(currentpage);
   for (let i = 1; i <= props.totalPages; i++) {
     let isActive;
     if (currentpage == i) {
@@ -25,6 +25,7 @@ const Pagination = (props) => {
           }
           else{
             props.pageresult(0);
+            setcurrentpage(1);
           }
          
         }}
