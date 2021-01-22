@@ -24,13 +24,15 @@ const Books = (props) => {
             maxResults:endindex,
             country:'US',
         }).then((data)=>{
-            data =filtereddata(data);
-            setbooks([...data.body.items]);
-            settotalitems(data.body.totalItems);
-            console.log(endindex);
-            let result = Math.ceil(data.body.totalItems/endindex);
-            settotalpages(result);
-            setinit(true);
+           
+            if(data.body.hasOwnProperty('items')==true){
+                data = filtereddata(data)
+                setbooks([...data.body.items]);
+                settotalitems(data.body.totalItems);
+                let result = Math.ceil(data.body.totalItems/endindex);
+                settotalpages(result);
+                setinit(true);
+            }
             
         })
     }
@@ -42,12 +44,16 @@ const Books = (props) => {
             maxResults:endindex,
             country:'US',
         }).then((data)=>{
-            data = filtereddata(data)
-            setbooks([...data.body.items]);
-            settotalitems(data.body.totalItems);
+            if(data.body.hasOwnProperty('items')==true){
+                data = filtereddata(data)
+                setbooks([...data.body.items]);
+                settotalitems(data.body.totalItems);
+                let result = Math.ceil(data.body.totalItems/endindex);
+                settotalpages(result);
+            }
+        
            // console.log(startindex);
-            let result = Math.ceil(data.body.totalItems/endindex);
-            settotalpages(result);
+        
             
         })
     }
