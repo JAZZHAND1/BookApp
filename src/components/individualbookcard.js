@@ -6,7 +6,7 @@ const Individualbookcard  =(props)=>{
 
 
       return(
-        <div className="card-container-md-8" style={{maxWidth:'36rem'}}>
+        <div className="card-container-md-8" style={{maxWidth:'36rem',margin:'auto',paddingTop:'10px'} }>
            <div classname="card">
             <img className="card-img-top" src={props.image} alt=""/>
             <div className="card-body">
