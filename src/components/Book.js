@@ -22,6 +22,7 @@ const Books = (props) => {
             q:searchterm,
             startIndex:startindex,
             maxResults:endindex,
+            country:'US',
         }).then((data)=>{
             data =filtereddata(data);
             setbooks([...data.body.items]);
@@ -39,6 +40,7 @@ const Books = (props) => {
             q:searchterm,
             startIndex:startindex,
             maxResults:endindex,
+            country:'US',
         }).then((data)=>{
             data = filtereddata(data)
             setbooks([...data.body.items]);
@@ -71,6 +73,9 @@ const Books = (props) => {
             book.volumeInfo['imageLinks'] = {thumbnail:'https://picsum.photos/seed/picsum/200/300'}
             console.log("image");
          }
+        // if(book.hasOwnProperty('volumeInfo')==false){
+         //    book.volumeInfo
+        // }
          console.log("40 times");
        })
        return data;
