@@ -3,7 +3,7 @@ import React from 'react';
 const Bookcard =(props)=>{
    
     return(
-        <div className="flexbox" style={{flexDirection:'column'}}>
+        <div className="flexbox" style={{flexDirection:'row'}}>
           <div className="row">
               <div className="col-md-8">
                 <div className="card">

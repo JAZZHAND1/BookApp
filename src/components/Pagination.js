@@ -6,19 +6,16 @@ const Pagination = (props) => {
   console.log(props);
   for (let i = 1; i <= props.totalPages; i++) {
     let isActive;
-    if (props.currentPage == i) {
+    if (currentpage == i) {
       isActive = "active";
     } else {
       isActive = "";
     }
-
-
-
-
-    let classes = "wave-effect " + isActive;
+    let classname = "page-item "+isActive;
     page_links.push(
-      <button
-        className={classes}
+      <li key={i} className={classname}> 
+      <a
+        className="page-link"
         key={i}
         onClick={(event) => {
          // props.startindex(39);
@@ -33,25 +30,35 @@ const Pagination = (props) => {
         }}
       >
         {i}
-      </button>
+      </a>
+      </li>
 
     );
   }
 
   return (
-        <nav>
-          <ul className="pagination" >
-           {props.init ? <button onClick={function(){
+       <nav aria-label="Page navigation example">
+          <ul className='pagination'>
+          <li className='page-item'>
+           {props.init ? <a className="page-link" onClick={function(){
              props.pageresult((currentpage-2)*40)
              setcurrentpage(currentpage-1)
-           }}>Prev</button>:''} 
-           <li className="page-item">{page_links} </li>
-           {props.init ? <button onClick={function(){
+           }}>Prev</a>:''} 
+        </li> 
+        {page_links}
+     
+        <li className='page-item'>
+           {props.init ? <a className="page-link" onClick={function(){
              props.pageresult((currentpage)*40)
              setcurrentpage(currentpage+1)
-           }}>Next</button>:''} 
+           }}>Next</a>:''}    
+          
+          </li>
+          
           </ul>
-        </nav>
+          </nav>
+          
+        
   );
 };
 
