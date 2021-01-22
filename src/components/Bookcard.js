@@ -12,11 +12,11 @@ const Bookcard =(props)=>{
                         <h3 className="card-title"><u> Title</u>:{props.title} </h3>
                         <h5 className="card-text"><u>  Authors</u>:{props.author} </h5>
                         <h5 className="card-text"><u>  Publishdate</u>:{props.publishdate} </h5>
-                        <a href="#" onClick={(e)=>
+                        <button className="btn btn-primary"  onClick={(e)=>
                           props.bookfunc(props)
                         }>
                        View Details
-                        </a>
+                        </button>
                       </div>
                     </div>
                     </div>
